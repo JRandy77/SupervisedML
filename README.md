@@ -1,87 +1,104 @@
-# QLS-MiCM Workshop Onboarding Procedure
+# McGill Initiative in Computational Medicine
+## Introduction to Supervised Machine Learning (Tabular Data)
 
-The following instructions detail how QLS-MiCM workshop leads can submit new workshop materials or make contributions to existing material in our GitHub organization page. The outline approach will be used henceforth to improve the transparency and efficiency of our review process.
+This repository contains the full materials for the MiCM Workshop: Introduction to Supervised Machine Learning, designed to teach fundamental supervised learning concepts through hands-on, medically themed exercises (simulated) using tabular data.
 
-## <ins>Submissions for New Workshops
+## Workshop Overview
+**Audience:** Researchers, trainees, students interested in supervised learning  
+**Duration:** ~4 hours + breaks  
+**Focus:** Regression, classification, regularization, nonlinearity, and MLPs for medical tabular data  
+**Tools:** Python, pandas, scikit-learn, and matplotlib  
 
-### 1. Creating a new GitHub Repo
+The workshop consists of:
+- Guided exercises implemented in Jupyter notebooks  
+- Synthetic medical datasets that simulate realistic relationships  
+- A final mini-hackathon applying all learned concepts  
 
-Access our [Workshop Repo Template](https://github.com/QLS-MiCM/Workshop_Template) and select the green "Use this template" button at the top-right to create a fresh repo for your workshop materials with the appropriate formatting.
-
-The repo will have the following structure: 
+## Repository Structure
 ```
-├── README.md # workshop overview, requirements and software, links to colab if used/etc. See README_template
-├── Exercises
-│   ├── data
-│   │   └── datafile1
-│   │   └── ...
-│   ├── scripts
-│   │   └── Exercise1.md and .html
-│   │   └── script1.sh/py/r
-│   └── answers/results
-│       └── ...
-├── Slides
-│   └── workshopslides.pdf #using the pptx template provided
-└── Outline
-    └── workshopoutline.pdf #using the template provided
+QLS-MiCM_Introduction_to_supervised_machine_learning-main/
+│
+├── Outline/
+│   └── workshop_outline.md
+│
+├── Slides/
+│   ├── 00_intro.md
+│   ├── 01_linear_regression.md
+│   ├── 02_regularization.md
+│   ├── 03_nonlinearity.md
+│   ├── 04_mlp.md
+│   ├── 05_training_eval.md
+│   └── 06_hackathon.md
+│
+└── Exercises/
+    ├── data/
+    ├── scripts/
+    │   └── generate_datasets.py
+    ├── workshop_utils.py
+    └── notebooks/
+        ├── 00_intro_and_data_exploration.ipynb
+        ├── 01_linear_regression_medical.ipynb
+        ├── 02_regularization_high_dim_medical.ipynb
+        ├── 03_feature_engineering_and_nonlinearity.ipynb
+        ├── 04_mlp_for_tabular_medical.ipynb
+        ├── 05_training_mechanics_and_eval.ipynb
+        └── 06_hackathon_template.ipynb
 ```
-It is required to provide at least the following content:
 
--   READE.md (this MUST include a brief outline, prerequisites and setup instructions)
+## Installation and Setup
+### 1. Clone or Download
+```bash
+git clone https://github.com/<your-org>/QLS-MiCM_Introduction_to_supervised_machine_learning.git
+cd QLS-MiCM_Introduction_to_supervised_machine_learning-main
+```
 
--   Slides
+### 2. Create Environment
+**Using conda:**
+```bash
+conda create -n micm-ml python=3.10 -y
+conda activate micm-ml
+```
+**Using venv:**
+```bash
+python -m venv micm-ml
+source micm-ml/bin/activate  # Windows: micm-ml\Scripts\activate
+```
 
--   Scripts
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
--   Data
+### 4. Generate Datasets
+```bash
+cd Exercises/scripts
+python generate_datasets.py
+```
 
-> Every workshop will have its own best way of providing scripts and data. Be mindful and organized so participants can easily access everything as the workshop proceeds (scripts, data and results must me reachable). Do not assume they will know where to find the data or where to store the results!!
+This creates five datasets inside `Exercises/data/`.
 
-### 2. Submitting Workshop Materials
+### 5. Launch Jupyter
+```bash
+jupyter lab
+```
+or
+```bash
+jupyter notebook
+```
 
-After completing your draft materials, submit an issue to [the workshop template page](https://github.com/QLS-MiCM/Workshop_Template/issues) with the **workshop name and date** as the title. From here, our academic team will review the materials and share constructive feedback as is required. After the materials are deemed complete, a new repo page will be made within the QLS-MiCM organization from which participants will access the materials.
+Then open the notebooks in `Exercises/notebooks/`.
 
-## <ins>Contributing to existing Workshop Materials
+## Dependencies
+See `requirements.txt` for exact versions.  
+Core dependencies include:
+- numpy
+- pandas
+- scikit-learn
+- matplotlib
+- jupyter
 
-### 1. Fork the Original Workshop Repo
+## License
+This material is for educational purposes within the McGill Initiative in Computational Medicine (MiCM).
 
-If the workshop you are leading already has pre-existing material, you can access the existing repository and create a fork. From there, you can make the changes you plan to make.
-
-### 2. Submit a Pull Request
-
-After completing your changes, you can submit a pull request to the original repository. Please ensure to include a description of the changes made. Our academic team will then review the changes and provide feedback as needed. Once all of the feedback is addressed, the pull request will be approved and merged.
-
-## Additional Guidelines
-
-### Recommendations
-
-> Each workshop will have its own needs, so these are only broad recommendations. Consider the organization of the code and legibility as a must. If possible avoid expaining on top a sh/py/r scripts without annotations/clear documentation and use notebooks with separated blocks.
-
-#### Data
-
-> Be mindful about the dataset size and computational times in normal computers as not everyone will have the same computational power. Provide the smallest possible dataset to have results: subsets of the genome, small tables/txts files, etc.
-
-#### For command-line UNIX-based workshops
-
--   Provide the code in a markdown format (and html or pdf) so that participants can copy and paste the commands directly to the terminal
--   If handson exercises are free code, provide a md document (and html or pdf) with the question, code answer(s) and output
--   For more advanced workshops and if required (i.e as part of a pipeline), .sh scripts can be provided
-
-#### For python-based workshops
-
--   Use of google-colab notebooks is suggested, adding annotations for each part of the code.
--   If handson exercises are free-code or fill in the blank, provide a different set of notebooks with the answers
--   For more advanced workshops and if required, .py scripts can be provided
-
-#### For R-based workshops
-
--   Use of R-markdown or Quarto notebooks in Rstudio is suggested, adding annotations for each part of the code.
--   If hands-on are free-code or fill in the blank, provide a different set of notebooks with the answers
--   For more advanced workshops and if required (i.e as part of a pipeline), .r scripts can be provided
-
-#### Multi-tool workshops
-
-Some workshops will require the usage of the command-line and R or python for further processing as part of a pipeline (i.e PRS and omics workshops). If possible, run shell commands inside the python/R notebooks; if not, provide a clear pipeline structure, i.e. as a notebook, so participants can follow each step.
-
-
-
+## Generative AI declaration
+Generative AI (ChatGPT5) was used in the making of this workshop. All tutorials and text have been human validated / adjusted, primarily adding structure to the content.
