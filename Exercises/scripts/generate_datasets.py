@@ -86,23 +86,87 @@ def generate_drug_response(n=150, random_state=0):
     df = pd.DataFrame({"dose": dose, "effect": effect})
     return df
 
+import numpy as np
+import pandas as pd
+import numpy as np
+import pandas as pd
 
-def generate_cvd(n=400, random_state=0):
+def generate_cvd(
+    n=1000,
+    random_state=0,
+    target_prevalence=0.5,
+    max_iter=30,
+    tol=0.01,
+):
+    """
+    Nonlinear cardio-ish simulator that auto-tunes the intercept so the
+    final prevalence is near `target_prevalence` (e.g. 0.5 for ~balanced).
+    """
     rng = np.random.default_rng(random_state)
-    age = rng.normal(50, 12, n)
-    chol = rng.normal(200, 30, n)
-    bp = rng.normal(120, 15, n)
-    logit = (
-        -10
-        + 0.05 * age
-        + 0.03 * (chol - 180)
-        + 0.04 * (bp - 120)
-        + 0.001 * (chol - 200) * (bp - 120)
+
+    # ---------- 1. simulate features ----------
+    age = rng.normal(50, 12, n).clip(20, 90)
+    chol = rng.normal(200, 30, n).clip(120, 320)
+    bp = rng.normal(120, 15, n).clip(80, 200)
+    bmi = rng.normal(27, 4, n).clip(16, 45)
+    smoker = rng.binomial(1, 0.25, n)
+    sex_male = rng.binomial(1, 0.5, n)
+
+    # nonlinear pieces (no intercept yet)
+    age_centered = (age - 50) / 10.0
+    age_term = 0.4 * age_centered + 0.25 * (age_centered ** 2)
+    bmi_term = 0.08 * (bmi - 27) + 0.03 * np.maximum(bmi - 32, 0)
+    bp_term = 0.04 * (bp - 120)
+    chol_term = 0.03 * (chol - 180) / 10.0
+    interaction_term = 0.002 * (chol - 200) * (bp - 120)
+    smoker_term = 0.8 * smoker + 0.3 * smoker * (age > 55)
+    sex_term = 0.3 * sex_male
+
+    base_logit = (
+        age_term
+        + bmi_term
+        + bp_term
+        + chol_term
+        + interaction_term
+        + smoker_term
+        + sex_term
     )
-    prob = 1 / (1 + np.exp(-logit))
+
+    # ---------- 2. find an intercept that hits the prevalence ----------
+    # simple 1D search over intercept
+    low, high = -6.0, 2.0  # wide-ish range
+    intercept = 0.0
+
+    for _ in range(max_iter):
+        intercept = (low + high) / 2
+        prob = 1 / (1 + np.exp(-(intercept + base_logit)))
+        prevalence = prob.mean()
+
+        if abs(prevalence - target_prevalence) < tol:
+            break
+
+        if prevalence > target_prevalence:
+            # too many positives -> make intercept more negative
+            high = intercept
+        else:
+            # too few positives -> make intercept bigger
+            low = intercept
+
+    # finalize labels
+    prob = 1 / (1 + np.exp(-(intercept + base_logit)))
     y = rng.binomial(1, prob)
-    df = pd.DataFrame({"age": age, "chol": chol, "bp": bp, "CVD": y})
+
+    df = pd.DataFrame({
+        "age": age,
+        "chol": chol,
+        "bp": bp,
+        "bmi": bmi,
+        "smoker": smoker,
+        "sex_male": sex_male,
+        "CVD": y,
+    })
     return df
+
 
 
 def generate_clinical_risk(n=500, random_state=0):
