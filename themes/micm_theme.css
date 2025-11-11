@@ -1,0 +1,43 @@
+/* @theme micm_theme */
+@import 'default';
+
+:root {
+  --micm-primary: #BEE8EC;
+  --micm-text: #003043;
+  --micm-body: #222;
+  --micm-banner-height: 150px;
+  --micm-padding-x: 72px;
+  --micm-padding-top: 96px;
+  width: 1600px;
+  height: 1200px;
+}
+
+section {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: var(--micm-body);
+  padding: var(--micm-padding-top) var(--micm-padding-x) 56px;
+  background-color: #fff;
+
+  /* we are in themes/, logo is in ../assets/ */
+  background-image:
+    url("../themes/micm_logo.png"),
+    url("../themes/micm_logo.png"),
+    linear-gradient(var(--micm-primary), var(--micm-primary));
+
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position:
+    right 20px bottom 30px,
+    left 20px top 10px,
+    left top;
+background-size:
+  auto 100px,    /* bottom-right logo: auto width, 40px tall */
+  auto 150px,    /* top-left logo: auto width, 44px tall */
+  100% var(--micm-banner-height);
+}
+
+section h1,
+section h2,
+section h3 {
+  color: var(--micm-text);
+  margin-top: 0;
+}

@@ -1,0 +1,12 @@
+{
+  "name": "qls-micm-intro-ml-slides",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:intro": "marp Slides/00_intro.md --pdf",
+    "build:all": "marp Slides/*.md --pdf"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^3.0.0"
+  }
+}
