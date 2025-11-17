@@ -4,15 +4,15 @@
 This repository contains the full materials for the MiCM Workshop: Introduction to Supervised Machine Learning, designed to teach fundamental supervised learning concepts through hands-on, medically themed exercises (simulated) using tabular data.
 
 ## Workshop Overview
-**Audience:** Researchers, trainees, students interested in supervised learning  
-**Duration:** ~4 hours + breaks  
-**Focus:** Regression, classification, regularization, nonlinearity, and MLPs for medical tabular data  
-**Tools:** Python, pandas, scikit-learn, and matplotlib  
+**Audience:** Researchers, trainees, students interested in supervised learning.
+**Duration:** ~4 hours + breaks.
+**Focus:** Regression, classification, regularization, nonlinearity, and MLPs for medical tabular data.
+**Tools:** Python, pandas, scikit-learn, and matplotlib.
 
 The workshop consists of:
-- Guided exercises implemented in Jupyter notebooks  
-- Synthetic medical datasets that simulate realistic relationships  
-- A final mini-hackathon applying all learned concepts  
+- Guided exercises implemented in Jupyter notebooks.
+- Synthetic medical datasets that simulate realistic relationships.
+- A final mini-hackathon applying all learned concepts.
 
 ## Repository Structure
 ```
@@ -45,6 +45,10 @@ QLS-MiCM_Introduction_to_supervised_machine_learning-main/
         └── 06_hackathon_template.ipynb
 ```
 
+## Collab notebooks
+
+Will make this week.
+
 ## Installation and Setup
 ### 1. Clone or Download
 ```bash
@@ -61,7 +65,7 @@ conda activate micm-ml
 **Using venv:**
 ```bash
 python -m venv micm-ml
-source micm-ml/bin/activate  # Windows: micm-ml\Scripts\activate
+source micm-ml/bin/activate # Windows: micm-ml\Scripts\activate
 ```
 
 ### 3. Install Dependencies
@@ -82,23 +86,37 @@ This creates five datasets inside `Exercises/data/`.
 jupyter lab
 ```
 or
+
 ```bash
 jupyter notebook
 ```
 
 Then open the notebooks in `Exercises/notebooks/`.
 
+To generate slides:
+
+```bash
+pip install npm
+bash build_slides.sh
+```
+
 ## Dependencies
-See `requirements.txt` for exact versions.  
+See `requirements.txt` for exact versions.
 Core dependencies include:
 - numpy
 - pandas
 - scikit-learn
 - matplotlib
 - jupyter
+- statsmodels
 
 ## License
 This material is for educational purposes within the McGill Initiative in Computational Medicine (MiCM).
 
 ## Generative AI declaration
-Generative AI (ChatGPT5) was used in the making of this workshop. All tutorials and text have been human validated / adjusted.
+Portions of this workshop were drafted with assistance from Generative AI tools (ChatGPT). All content has been reviewed, edited, and validated by the instructor to ensure accuracy and clarity.
+
+
+*Workshop created as part of the McGill Initiative in Computational Medicine*
+
+
