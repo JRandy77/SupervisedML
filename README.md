@@ -111,7 +111,7 @@ Core dependencies include:
 - statsmodels
 
 ## License
-This material is for educational purposes within the McGill Initiative in Computational Medicine (MiCM).
+This material is for educational purposes within the McGill Initiative in Computational Medicine (MiCM), released under MIT license.
 
 ## Generative AI declaration
 Portions of this workshop were drafted with assistance from Generative AI tools (ChatGPT). All content has been reviewed, edited, and validated by the instructor to ensure accuracy and clarity.
