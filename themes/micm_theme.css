@@ -18,10 +18,12 @@ section {
   padding: var(--micm-padding-top) var(--micm-padding-x) 56px;
   background-color: #fff;
 
-  /* we are in themes/, logo is in ../assets/ */
+  /* remove the huge global scaling */
+  /* font-size: 2em; */
+  
   background-image:
-    url("../themes/micm_logo.png"),
-    url("../themes/micm_logo.png"),
+    url("../../themes/micm_logo.png"),
+    url("../../themes/micm_logo.png"),
     linear-gradient(var(--micm-primary), var(--micm-primary));
 
   background-repeat: no-repeat, no-repeat, no-repeat;
@@ -29,15 +31,46 @@ section {
     right 20px bottom 30px,
     left 20px top 10px,
     left top;
-background-size:
-  auto 100px,    /* bottom-right logo: auto width, 40px tall */
-  auto 150px,    /* top-left logo: auto width, 44px tall */
-  100% var(--micm-banner-height);
+  background-size:
+    auto 100px,
+    auto 150px,
+    100% var(--micm-banner-height);
 }
 
-section h1,
-section h2,
-section h3 {
+/* Headings: clear visual hierarchy, but not massive */
+section h1 {
+  font-size: 2.2rem;
   color: var(--micm-text);
   margin-top: 0;
+}
+
+section h2 {
+  font-size: 2.0rem;
+  color: var(--micm-text);
+  margin-top: 0;
+}
+
+section h3 {
+  font-size: 1.7rem;
+  color: var(--micm-text);
+  margin-top: 0;
+}
+
+/* Body text: slightly larger than default, nicely readable */
+section p {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+section li {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+/* Tables: a bit smaller so they fit */
+section table,
+section td,
+section th {
+  font-size: 1.3rem;
+  line-height: 1.3;
 }

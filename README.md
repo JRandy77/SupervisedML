@@ -101,4 +101,4 @@ Core dependencies include:
 This material is for educational purposes within the McGill Initiative in Computational Medicine (MiCM).
 
 ## Generative AI declaration
-Generative AI (ChatGPT5) was used in the making of this workshop. All tutorials and text have been human validated / adjusted, primarily adding structure to the content.
+Generative AI (ChatGPT5) was used in the making of this workshop. All tutorials and text have been human validated / adjusted.
