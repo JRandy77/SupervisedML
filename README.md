@@ -93,7 +93,7 @@ jupyter notebook
 
 Then open the notebooks in `Exercises/notebooks/`.
 
-To generate slides:
+### 6. To generate slides:
 
 ```bash
 pip install npm
