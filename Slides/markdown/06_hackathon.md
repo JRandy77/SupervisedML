@@ -45,14 +45,6 @@ You may:
 - run multiple experiments.
 - document your choices.
 
-You may **NOT**:
-
-- change preprocessing.
-- change the train/test split.
-- alter or rebalance the data.
-- engineer new features.
-- manually inspect or label data.
-- use external libraries or pretrained models.
 
 All teams compete under the **same constraints**.
 
@@ -83,6 +75,6 @@ Ranking is based on:
 
 ---
 
-# Good Luck!.
+# Good Luck!
 ### May the best model win.
 

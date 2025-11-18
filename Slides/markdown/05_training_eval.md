@@ -18,7 +18,7 @@ Medical ML adds challenges:
 - noisy predictors.
 - high stakes (false negatives matter).
 
-**Accuracy alone is misleading.**.
+**Accuracy alone is misleading.**
 We need richer, more reliable evaluation methods.
 
 ---
@@ -32,7 +32,7 @@ GridSearchCV:
 - selects the model with the best mean CV performance.
 - avoids tuning on the test set
 
-Core principle:.
+Core principle:
 **Hyperparameters must be chosen using only training data.**
 
 ---
@@ -61,9 +61,9 @@ From `classification_report`:
 - **Accuracy**.
   - overall correctness; can be misleading with imbalance.
 - **Precision**.
-  - among predicted positives, how many are correct?.
+  - among predicted positives, how many are correct?
 - **Recall (Sensitivity)**.
-  - of true positives, how many were detected?.
+  - of true positives, how many were detected?
 - **F1-score**.
   - harmonic mean of precision + recall; balances both.
 
@@ -90,4 +90,4 @@ High AUC means:
 - Use `stratify=y` in train/test split to preserve class ratios.
 - Use `n_jobs=-1` to speed up grid search.
 - Watch for `ConvergenceWarning` -> increase `max_iter`.
-- Don’t build huge grids — slow and prone to overfitting CV folds.
+- Don’t build huge grids - slow and prone to overfitting CV folds.

@@ -4,7 +4,7 @@ theme: micm_theme
 paginate: true
 ---
 
-# MLP for Tabular Medical Data
+# Multilayer Perceptrons
 QLS–MiCM Workshop
 
 ---
@@ -24,8 +24,7 @@ QLS–MiCM Workshop
   - $\hat{p} = \sigma(X\beta)$
 - ideal for classification tasks.
 
-**Key idea:**
-Logistic = linear model **passed through a probability link function**.
+Logistic is a linear model **passed through a probability link function**.
 
 
 ---
@@ -79,24 +78,15 @@ Logistic regression is:
 You will experiment with:
 
 - **Architecture**
-  - number of layers `(e.g., (8,), (32,16), (100,100))`
-  - number of neurons.
+  - number of layers/neurons `(e.g., (8,), (32,16), (100,100))`.
 
 - **Activation Functions**
-  - `relu`.
-  - `tanh`.
-  - avoid `identity` for hidden layers
-
+  - `relu` / `tanh` /`identity`.
 - **Regularization**
-  - adjust `alpha`.
-  - understand it acts like L2 weight decay.
-
+  - adjust `alpha` (acts like L2 by default).
 - **Training Settings**
   - increase `max_iter`.
-  - add `random_state=42`.
-
-Goal:.
-**Can you make the MLP outperform logistic regression?**
+Goal: **Can you make the MLP outperform logistic regression?**
 
 ---
 
