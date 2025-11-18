@@ -8,36 +8,35 @@ paginate: true
 
 ### QLS–MiCM Workshop
 
-**Instructor:** Jesse Islam  
-**Duration:** 4 hours total  
+**Instructor:** Jesse Islam
 **Section:** Introduction 
 
 ---
 
 ## Workshop Overview
 
-1. Introduction & Motivation  
-2. Linear Regression  
-3. Regularization  
-4. Feature Engineering & Nonlinearity  
-5. MLPs for Tabular Data  
-6. Training Mechanics & Evaluation  
+1. Introduction & Motivation.
+2. Linear Regression.
+3. Regularization.
+4. Feature Engineering & Nonlinearity.
+5. MLPs for Tabular Data.
+6. Training Mechanics & Evaluation.
 7. Mini Hackathon
 
 ---
 
 ## Why Machine Learning in Medicine?
 
-- We generate **massive amounts of biomedical data**
-  - Clinical measures, omics, imaging, EHRs  
+- Large amounts of biomedical data:
+  - Clinical measures, omics, imaging, EHRs.
 - ML can:
-  - **Predict** outcomes (e.g., risk, response)
-  - **Identify** patterns and biomarkers
-  - **Support** clinical decisions
+  - **Predict** outcomes (e.g., risk, response).
+  - **Identify** patterns and biomarkers.
+  - **Support** clinical decisions.
 
 ---
 
-# Exercise 00 — Intro & Data Exploration
+# Exercise 00: Intro & Data Exploration
 
 No modelling yet! Let's explore the data.
 
@@ -47,7 +46,7 @@ No modelling yet! Let's explore the data.
 
 **Supervised learning :**
 - We have **features (X)** and a **target (y)**
-- Our goal: learn a function of X that predicts y f(X)=y
+- Our goal: learn a function of X that predicts y. `f(X)=y`
 - Everything we do today follows this structure.
 
 ---
@@ -66,26 +65,26 @@ You’ll repeat this in every later exercise to understand the data.
 
 ## Your First Dataset
 
-Open the notebook:  
+Open the notebook:
 **`00_intro_and_data_exploration.ipynb`**
 
 You'll do:
-- `df.head()`  
-- `df.shape`  
-- `df.describe()`  
-- Plot histograms  
-- Plot correlations  
+- `df.head()`.
+- `df.shape`.
+- `df.describe()`.
+- Plot histograms.
+- Plot correlations.
 - Identify potential predictors
 
-Nothing model-related yet — just understanding the data.
+Nothing model-related yet. Just understanding the data.
 
 ---
 
-## Why Exploration Matters
+## Why Explore?
 
 Before training any model, we will answer:
 
-- What variables are there?  
+- What variables are there?.
 - Which features look related to the target?
 
 Good exploration = better modeling later.

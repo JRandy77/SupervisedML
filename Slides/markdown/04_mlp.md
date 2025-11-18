@@ -9,9 +9,30 @@ QLS–MiCM Workshop
 
 ---
 
+## Linear vs. Logistic Regression
+
+**Linear regression**
+- predicts a *continuous* value.
+- output can be any real number.
+- model:
+  - $\hat{y} = X\beta$
+
+
+**Logistic regression**
+- predicts a *probability* (0–1).
+- uses the sigmoid function.
+  - $\hat{p} = \sigma(X\beta)$
+- ideal for classification tasks.
+
+**Key idea:**
+Logistic = linear model **passed through a probability link function**.
+
+
+---
+
 ## Why Compare MLPs to Linear Models? 
 
-Medical tabular data often has:
+Tabular data often has:
 
 - few features.
 - moderate sample size.
@@ -83,10 +104,10 @@ Goal:.
 
 Using `classification_report`:
 
-- **Accuracy** — correctness.
-- **Precision** — false-alarm.
-- **Recall** — disease-detection.
-- **F1-score** — balance of precision + recall.
+- **Accuracy** - correctness.
+- **Precision** - false-alarm.
+- **Recall** - disease-detection.
+- **F1-score** - balance of precision + recall.
 
 Key question:.
 **Does added model complexity improve clinically meaningful metrics?**

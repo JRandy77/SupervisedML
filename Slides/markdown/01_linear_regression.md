@@ -5,7 +5,6 @@ paginate: true
 ---
 
 # Linear Regression 
-### Interpretable Models for Medical Data 
 QLS–MiCM Workshop
 
 ---
@@ -33,12 +32,12 @@ A common model in clinical research because:
 
 # What Linear Regression Does
 
-\[
-y = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p
-\]
+
+$$y = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p$$
+
 
 - Predicts a **continuous** outcome (Gaussian). 
-- coefficients: change in y for unit change in x.
+- coefficients ($\beta_p$): change in y for unit change in $x_p$.
 - Assumes relationships are additive.
 
 ---
@@ -46,6 +45,8 @@ y = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p
 # Step 1: Start Simple
 
 We begin with a model that uses **one predictor**.
+
+$$y = \beta_0 + \beta_1 x_1$$
 
 This helps us:
 
@@ -77,11 +78,9 @@ Questions to consider:
 
 You will compute:
 
-### **MAE** 
-Average prediction error.
+**MAE**: Average prediction error.
 
-### **R²** 
-How much variation in the outcome the model explains.
+**$R^2$**: How much variation in the outcome the model explains.
 - What is “good enough”? 
 - Do more predictors always help?
 
@@ -89,7 +88,7 @@ How much variation in the outcome the model explains.
 
 # Understanding Uncertainty
 
-With statsmodels, you will look at:
+With `statsmodels`, you will look at:
 
 - p-values.
 - significance.
@@ -117,7 +116,7 @@ And raises questions like:
 
 ---
 
-# What You Will Do (10–12 minutes)
+# What You Will Do 
 
 In the notebook, you will:
 

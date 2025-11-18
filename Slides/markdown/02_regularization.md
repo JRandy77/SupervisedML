@@ -5,8 +5,8 @@ paginate: true
 ---
 
 
-# Regularization  
-### High-Dimensional Medical Data  
+# Regularization in High-Dimensions
+
 QLS–MiCM Workshop
 
 ---
@@ -16,15 +16,15 @@ QLS–MiCM Workshop
 
 Medical datasets, especially omics, often have:
 
-- **Hundreds–thousands** of predictors  
-- **Correlated** features   
-- **Small sample sizes** relative to features  
+- **Hundreds–thousands** of predictors.
+- **Correlated** features. 
+- **Small sample sizes** relative to features.
 
 Ordinary linear regression struggles with:
 
-- unstable coefficients  
-- overfitting  
-- poor generalization  
+- unstable coefficients.
+- overfitting.
+- poor generalization.
 
 This motivates regularization.
 
@@ -36,26 +36,27 @@ Regularization adds a **penalty** to large coefficients.
 
 This encourages:
 
-- smaller, more stable coefficients  
+- smaller, more stable coefficients.
 - less sensitivity to noise.
-- better generalization on new data  
+- better generalization on new data.
 
 Two main types:
 
-- **Ridge (L2):** shrinks all coefficients  
+- **Ridge (L2):** shrinks all coefficients.
+  - $$\hat{\beta}= \arg\min_{\beta}\left(\| y - X\beta \|_2^2\;+\;\lambda \| \beta \|_2^2\right)$$
 - **Lasso (L1):** sets some coefficients to **zero**
-
+  - $$\hat{\beta}= \arg\min_{\beta}\left(\| y - X\beta \|_2^2\;+\;\lambda \| \beta \|_1\right)$$
 ---
 
 # Ridge Regression (L2)
 
 Ridge:
 
-- handles correlated predictors well  
-- spreads weight across related features  
-- improves stability without eliminating variables  
+- handles correlated predictors well.
+- spreads weight across related features.
+- improves stability without eliminating variables.
 
-Key question to explore:  
+Key question to explore:
 **Which features receive the most shrinkage?**
 
 ---
@@ -68,12 +69,13 @@ Lasso:
 - drives many coefficients exactly to **zero**.
 - useful when features are redundant or weakly informative.
 
-Key question to explore:  
+Key question to explore:
 **Which features does Lasso keep, and why?**
 
 ---
 
-# Cross-Validation for α (Regularization Strength)
+# Cross-Validation for $\alpha$ (Regularization Strength)
 - Splitting your dataset into a training and validation set.
 - Cross-validation uses more splits.
 - We use cross-validation to estimate regularization strength.
+- $\lambda$ is the weight of the penalty ($\alpha$ is what scikit uses).
