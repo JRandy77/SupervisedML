@@ -39,16 +39,16 @@ Core principle:.
 
 ## What We Tune in This Exercise 
 
-### 🔧 Architecture.
-- `hidden_layer_sizes`: (32,), (64,), (32,16)
+- Architecture.
+  - `hidden_layer_sizes`: (32,), (64,), (32,16)
 
-### 🔧 Regularization.
-- `alpha` → L2 penalty controlling model complexity
+- Regularization.
+  - `alpha` → L2 penalty controlling model complexity
 
-### 🔧 Training Settings.
-- `max_iter`.
-- `random_state` (reproducibility).
-- optional: `early_stopping=True` to reduce overfitting + speed up training
+- Training Settings.
+  - `max_iter`.
+  - `random_state` (reproducibility).
+  - optional: `early_stopping=True` to reduce overfitting + speed up training
 
 The goal is to observe **how each change affects test performance**.
 
@@ -59,13 +59,13 @@ The goal is to observe **how each change affects test performance**.
 From `classification_report`:
 
 - **Accuracy**.
-.- overall correctness; can be misleading with imbalance.
+  - overall correctness; can be misleading with imbalance.
 - **Precision**.
-.- among predicted positives, how many are correct?.
+  - among predicted positives, how many are correct?.
 - **Recall (Sensitivity)**.
-.- of true positives, how many were detected?.
+  - of true positives, how many were detected?.
 - **F1-score**.
-.- harmonic mean of precision + recall; balances both.
+  - harmonic mean of precision + recall; balances both.
 
 Medical importance:
 **Low recall = missed disease cases.**

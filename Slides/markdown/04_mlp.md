@@ -78,22 +78,22 @@ Logistic regression is:
 
 You will experiment with:
 
-### 🔧 **Architecture**
-- number of layers `(e.g., (8,), (32,16), (100,100))`
-- number of neurons.
+- **Architecture**
+  - number of layers `(e.g., (8,), (32,16), (100,100))`
+  - number of neurons.
 
-### 🔧 **Activation Functions**
-- `relu`.
-- `tanh`.
-- avoid `identity` for hidden layers
+- **Activation Functions**
+  - `relu`.
+  - `tanh`.
+  - avoid `identity` for hidden layers
 
-### 🔧 **Regularization**
-- adjust `alpha`.
-- understand it acts like L2 weight decay.
+- **Regularization**
+  - adjust `alpha`.
+  - understand it acts like L2 weight decay.
 
-### 🔧 **Training Settings**
-- increase `max_iter`.
-- add `random_state=42`.
+- **Training Settings**
+  - increase `max_iter`.
+  - add `random_state=42`.
 
 Goal:.
 **Can you make the MLP outperform logistic regression?**
