@@ -51,6 +51,30 @@ No modelling yet! Let's explore the data.
 
 ---
 
+## Example 1: A Simple Linear Relationship
+
+![Point cloud with slope 1](../figures/00_introduction_pointcloud.png)
+
+---
+
+## Example 2: Linear Fit Through the Data
+
+![Point cloud with regression line](../figures/00_introduction_pointcloud_line.png)
+
+---
+
+## Example 3: Adding a High-Leverage Point
+
+![Point cloud with high-leverage point](../figures/00_introduction_pointcloud_high_leverage.png)
+
+---
+
+## Example 4: How the Line Changes
+
+![Point cloud with high-leverage point and line](../figures/00_introduction_pointcloud_high_leverage_line.png)
+
+---
+
 ## The Workflow We'll Use All Day
 
 1. Load dataset.
@@ -84,7 +108,7 @@ Nothing model-related yet. Just understanding the data.
 
 Before training any model, we will answer:
 
-- What variables are there?.
+- What variables are there?
 - Which features look related to the target?
 
 Good exploration = better modeling later.

@@ -46,6 +46,7 @@ Two main types:
   - $$\hat{\beta}= \arg\min_{\beta}\left(\| y - X\beta \|_2^2\;+\;\lambda \| \beta \|_2^2\right)$$
 - **Lasso (L1):** sets some coefficients to **zero**
   - $$\hat{\beta}= \arg\min_{\beta}\left(\| y - X\beta \|_2^2\;+\;\lambda \| \beta \|_1\right)$$
+
 ---
 
 # Ridge Regression (L2)
@@ -71,6 +72,20 @@ Lasso:
 
 Key question to explore:
 **Which features does Lasso keep, and why?**
+
+---
+
+## Ridge (L2) Coefficient Shrinkage
+
+
+![ridge](../figures/02_regularization_ridge_paths.png)
+
+---
+
+## Lasso (L1) Coefficient Shrinkage
+
+
+![lasso](../figures/02_regularization_lasso_paths.png)
 
 ---
 

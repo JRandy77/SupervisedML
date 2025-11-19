@@ -60,6 +60,60 @@ But can also:
 
 You will explore both outcomes.
 
+
+
+---
+
+## Nonlinear Classes: Circular Pattern
+
+The true classes form a **circle** — a nonlinear decision boundary.
+
+![circle points](../figures/04_mlp_circle_points.png)
+
+---
+
+## Logistic Regression on Circular Data
+
+Logistic regression can draw only a **straight line**, so it cannot separate the inner vs outer region well.
+
+![circle logistic](../figures/04_mlp_circle_logistic_boundary.png)
+
+---
+
+## MLP on Circular Data
+
+A small MLP can learn a **curved nonlinear boundary** that follows the circular structure.
+
+![circle mlp](../figures/04_mlp_circle_mlp_boundary.png)
+
+---
+
+## XOR Pattern: Linearly Inseparable
+
+In XOR, the class depends on the **interaction** between the features (sign of x₁ × x₂).
+
+No straight line can separate these classes.
+
+![xor points](../figures/04_mlp_xor_points.png)
+
+---
+
+## Logistic Regression on XOR
+
+Logistic regression tries to split the space with a **single line**, which misclassifies entire quadrants.
+
+![xor logistic](../figures/04_mlp_xor_logistic_boundary.png)
+
+---
+
+## MLP on XOR
+
+An MLP easily learns a **nonlinear boundary** that wraps around the quadrants.
+
+![xor mlp](../figures/04_mlp_xor_mlp_boundary.png)
+
+
+
 ---
 
 ## The Baseline: Logistic Regression

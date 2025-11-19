@@ -65,6 +65,30 @@ Questions to consider:
 
 ---
 
+## Example 1: Outcome vs Predictor (Ignoring Sex)
+
+![no sex](../figures/01_linear_regression_pointcloud_no_sex.png)
+
+---
+
+## Example 2: Single Linear Fit (Ignoring Sex)
+
+![single line](../figures/01_linear_regression_pointcloud_single_line.png)
+
+---
+
+## Example 3: Sex as a Categorical Variable
+
+![sex only](../figures/01_linear_regression_scatter_by_sex.png)
+
+---
+
+## Example 4: Separate Regression Lines by Sex
+
+![two lines](../figures/01_linear_regression_by_sex_two_lines.png)
+
+---
+
 # Step 3: When Predictors Relate to Each Other
 
 - How does the model handle related predictors? 
