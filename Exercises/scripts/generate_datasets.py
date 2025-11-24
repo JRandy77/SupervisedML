@@ -86,10 +86,7 @@ def generate_drug_response(n=150, random_state=0):
     df = pd.DataFrame({"dose": dose, "effect": effect})
     return df
 
-import numpy as np
-import pandas as pd
-import numpy as np
-import pandas as pd
+
 
 def generate_cvd(
     n=1000,
@@ -167,11 +164,6 @@ def generate_cvd(
     })
     return df
 
-import numpy as np
-import pandas as pd
-
-import numpy as np
-import pandas as pd
 
 def generate_clinical_risk(n=500, random_state=0):
     rng = np.random.default_rng(random_state)
