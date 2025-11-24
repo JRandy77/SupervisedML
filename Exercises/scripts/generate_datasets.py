@@ -167,13 +167,14 @@ def generate_cvd(
     })
     return df
 
-
+import numpy as np
+import pandas as pd
 
 def generate_clinical_risk(n=500, random_state=0):
     rng = np.random.default_rng(random_state)
 
     # ----------------------------------------------------------
-    # 1. Core clinical features
+    # 1. Core clinical predictors (true signal)
     # ----------------------------------------------------------
     age = rng.normal(45, 12, n)
     bmi = rng.normal(28, 6, n)
@@ -182,8 +183,7 @@ def generate_clinical_risk(n=500, random_state=0):
     sex = rng.choice(["M", "F"], n)
 
     # ----------------------------------------------------------
-    # 2. Latent risk: linear + nonlinear + interactions
-    #    (no intercept needed, we'll balance via threshold)
+    # 2. Latent risk = linear + nonlinear + interactions
     # ----------------------------------------------------------
     linear_part = (
         0.05 * age +
@@ -192,59 +192,68 @@ def generate_clinical_risk(n=500, random_state=0):
         0.01 * (bp - 120)
     )
 
-    # Nonlinearities
     nonlinear_part = (
-        0.0005 * (bmi - 28)**2 +        # quadratic BMI effect
-        0.0001 * (glucose - 120)**3     # cubic glucose effect
+        0.0005 * (bmi - 28) ** 2 +
+        0.0001 * (glucose - 120) ** 3
     )
 
-    # Interactions
     interaction_part = (
         0.015 * (bmi * glucose / 100) +
         0.01  * (age * bmi / 50)
     )
 
-    # Sex-specific effect: high-BMI males at extra risk
     sex_effect = 0.5 * (sex == "M") * (bmi > 30)
 
-    # Unmodelled noise (makes classification imperfect)
     noise = rng.normal(0, 1, n)
 
     latent_risk = linear_part + nonlinear_part + interaction_part + sex_effect + noise
 
     # ----------------------------------------------------------
-    # 3. Force balanced classes by thresholding at the median
+    # 3. Balanced classes: threshold latent risk at its median
     # ----------------------------------------------------------
     threshold = np.median(latent_risk)
-    y = (latent_risk > threshold).astype(int)   # exactly ~50% 1s, 50% 0s
+    diabetes = (latent_risk > threshold).astype(int)
 
     # ----------------------------------------------------------
-    # 4. Nonsense / irrelevant features
+    # 4. Realistic *red herring* features (NO signal)
     # ----------------------------------------------------------
-    df_noise = pd.DataFrame({
-        "noise_uniform": rng.uniform(0, 1, n),
-        "noise_normal": rng.normal(0, 1, n),
-        "noise_categorical": rng.choice(["A", "B", "C", "D"], n),
-        "random_string": rng.choice(["dog", "cat", "bird"], n),
-        "id_number": rng.integers(1000, 9999, n),
+    # They LOOK important, but are fully noise
+    cholesterol = rng.normal(180, 35, n)           # looks predictive, but isn't
+    creatinine = rng.normal(0.9, 0.2, n)           # kidney function-ish
+    heart_rate = rng.normal(75, 10, n)             # plausible but unrelated
+    family_history_score = rng.integers(0, 5, n)   # suspicious but useless
+    physical_activity = rng.choice(
+        ["low", "moderate", "high"], n,
+        p=[0.3, 0.5, 0.2]
+    )
+    alcohol_units_per_week = rng.poisson(3, n)     # realistic distribution
+    sleep_hours = rng.normal(7, 1.5, n)            # feels like it matters…
+    vitamin_d_level = rng.normal(25, 8, n)         # many students will try it
+    sodium_intake_mg = rng.normal(3000, 500, n)    # noisy dietary variable
+
+    # ----------------------------------------------------------
+    # 5. Assemble final dataset
+    # ----------------------------------------------------------
+    df = pd.DataFrame({
+        "age": age,
+        "bmi": bmi,
+        "glucose": glucose,
+        "bp": bp,
+        "sex": sex,
+        "cholesterol": cholesterol,
+        "creatinine": creatinine,
+        "heart_rate": heart_rate,
+        "family_history_score": family_history_score,
+        "physical_activity": physical_activity,
+        "alcohol_units_per_week": alcohol_units_per_week,
+        "sleep_hours": sleep_hours,
+        "vitamin_d_level": vitamin_d_level,
+        "sodium_intake_mg": sodium_intake_mg,
+        "diabetes": diabetes,
     })
 
-    # ----------------------------------------------------------
-    # 5. Final dataframe
-    # ----------------------------------------------------------
-    df = pd.DataFrame(
-        {
-            "age": age,
-            "bmi": bmi,
-            "glucose": glucose,
-            "bp": bp,
-            "sex": sex,
-            "diabetes": y,
-        }
-    )
-
-    df = pd.concat([df, df_noise], axis=1)
     return df
+
 
 
 def main():
