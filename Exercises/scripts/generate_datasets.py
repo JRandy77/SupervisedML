@@ -171,20 +171,67 @@ def generate_cvd(
 
 def generate_clinical_risk(n=500, random_state=0):
     rng = np.random.default_rng(random_state)
+
+    # ----------------------------------------------------------
+    # 1. Core clinical features
+    # ----------------------------------------------------------
     age = rng.normal(45, 12, n)
     bmi = rng.normal(28, 6, n)
     glucose = rng.normal(100, 25, n)
     bp = rng.normal(120, 15, n)
     sex = rng.choice(["M", "F"], n)
-    logit = (
-        -12
-        + 0.06 * age
-        + 0.05 * bmi
-        + 0.07 * (glucose - 100)
-        + 0.02 * (bmi * glucose / 100)
+
+    # ----------------------------------------------------------
+    # 2. Latent risk: linear + nonlinear + interactions
+    #    (no intercept needed, we'll balance via threshold)
+    # ----------------------------------------------------------
+    linear_part = (
+        0.05 * age +
+        0.03 * bmi +
+        0.04 * (glucose - 100) +
+        0.01 * (bp - 120)
     )
-    prob = 1 / (1 + np.exp(-logit))
-    y = rng.binomial(1, prob)
+
+    # Nonlinearities
+    nonlinear_part = (
+        0.0005 * (bmi - 28)**2 +        # quadratic BMI effect
+        0.0001 * (glucose - 120)**3     # cubic glucose effect
+    )
+
+    # Interactions
+    interaction_part = (
+        0.015 * (bmi * glucose / 100) +
+        0.01  * (age * bmi / 50)
+    )
+
+    # Sex-specific effect: high-BMI males at extra risk
+    sex_effect = 0.5 * (sex == "M") * (bmi > 30)
+
+    # Unmodelled noise (makes classification imperfect)
+    noise = rng.normal(0, 1, n)
+
+    latent_risk = linear_part + nonlinear_part + interaction_part + sex_effect + noise
+
+    # ----------------------------------------------------------
+    # 3. Force balanced classes by thresholding at the median
+    # ----------------------------------------------------------
+    threshold = np.median(latent_risk)
+    y = (latent_risk > threshold).astype(int)   # exactly ~50% 1s, 50% 0s
+
+    # ----------------------------------------------------------
+    # 4. Nonsense / irrelevant features
+    # ----------------------------------------------------------
+    df_noise = pd.DataFrame({
+        "noise_uniform": rng.uniform(0, 1, n),
+        "noise_normal": rng.normal(0, 1, n),
+        "noise_categorical": rng.choice(["A", "B", "C", "D"], n),
+        "random_string": rng.choice(["dog", "cat", "bird"], n),
+        "id_number": rng.integers(1000, 9999, n),
+    })
+
+    # ----------------------------------------------------------
+    # 5. Final dataframe
+    # ----------------------------------------------------------
     df = pd.DataFrame(
         {
             "age": age,
@@ -195,6 +242,8 @@ def generate_clinical_risk(n=500, random_state=0):
             "diabetes": y,
         }
     )
+
+    df = pd.concat([df, df_noise], axis=1)
     return df
 
 
