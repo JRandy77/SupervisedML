@@ -170,11 +170,14 @@ def generate_cvd(
 import numpy as np
 import pandas as pd
 
+import numpy as np
+import pandas as pd
+
 def generate_clinical_risk(n=500, random_state=0):
     rng = np.random.default_rng(random_state)
 
     # ----------------------------------------------------------
-    # 1. Core clinical predictors (true signal)
+    # 1. Core clinical predictors (the ONLY true signal)
     # ----------------------------------------------------------
     age = rng.normal(45, 12, n)
     bmi = rng.normal(28, 6, n)
@@ -183,56 +186,50 @@ def generate_clinical_risk(n=500, random_state=0):
     sex = rng.choice(["M", "F"], n)
 
     # ----------------------------------------------------------
-    # 2. Latent risk = linear + nonlinear + interactions
+    # 2. Build a *nonlinear* latent risk with XOR-style logic
+    #    - High risk if EITHER metabolic OR vascular risk is high
+    #      but not both (XOR)
+    #    - Plus some extra nonlinear junk + noise
     # ----------------------------------------------------------
-    linear_part = (
-        0.05 * age +
-        0.03 * bmi +
-        0.04 * (glucose - 100) +
-        0.01 * (bp - 120)
+    metabolic_high = ((bmi > 30) | (glucose > 120)).astype(int)
+    vascular_high = ((bp > 135) | (age > 55)).astype(int)
+
+    xor_component = (metabolic_high ^ vascular_high).astype(float)
+
+    nonlinear_component = (
+        0.1 * (bmi - 28)**2 / 36.0                 # curved BMI effect
+        - 0.1 * ((glucose - 100)/25.0)**3          # cubic glucose effect
+        + 0.1 * (age - 45) * (bmi - 28) / (12*6)   # interaction
     )
 
-    nonlinear_part = (
-        0.0005 * (bmi - 28) ** 2 +
-        0.0001 * (glucose - 120) ** 3
-    )
+    noise = rng.normal(0, 0.5, n)
 
-    interaction_part = (
-        0.015 * (bmi * glucose / 100) +
-        0.01  * (age * bmi / 50)
-    )
-
-    sex_effect = 0.5 * (sex == "M") * (bmi > 30)
-
-    noise = rng.normal(0, 1, n)
-
-    latent_risk = linear_part + nonlinear_part + interaction_part + sex_effect + noise
+    latent_risk = xor_component + nonlinear_component + noise
 
     # ----------------------------------------------------------
-    # 3. Balanced classes: threshold latent risk at its median
+    # 3. Force *balanced* classes via median threshold
     # ----------------------------------------------------------
     threshold = np.median(latent_risk)
-    diabetes = (latent_risk > threshold).astype(int)
+    diabetes = (latent_risk > threshold).astype(int)   # exactly 50% 0 / 50% 1
 
     # ----------------------------------------------------------
-    # 4. Realistic *red herring* features (NO signal)
+    # 4. Realistic red-herring features (NO signal)
+    #    These are *independent noise*: they do NOT affect diabetes.
     # ----------------------------------------------------------
-    # They LOOK important, but are fully noise
-    cholesterol = rng.normal(180, 35, n)           # looks predictive, but isn't
-    creatinine = rng.normal(0.9, 0.2, n)           # kidney function-ish
-    heart_rate = rng.normal(75, 10, n)             # plausible but unrelated
-    family_history_score = rng.integers(0, 5, n)   # suspicious but useless
+    cholesterol = rng.normal(180, 35, n)
+    creatinine = rng.normal(0.9, 0.2, n)
+    heart_rate = rng.normal(75, 10, n)
+    family_history_score = rng.integers(0, 5, n)
     physical_activity = rng.choice(
-        ["low", "moderate", "high"], n,
-        p=[0.3, 0.5, 0.2]
+        ["low", "moderate", "high"], n, p=[0.3, 0.5, 0.2]
     )
-    alcohol_units_per_week = rng.poisson(3, n)     # realistic distribution
-    sleep_hours = rng.normal(7, 1.5, n)            # feels like it matters…
-    vitamin_d_level = rng.normal(25, 8, n)         # many students will try it
-    sodium_intake_mg = rng.normal(3000, 500, n)    # noisy dietary variable
+    alcohol_units_per_week = rng.poisson(3, n)
+    sleep_hours = rng.normal(7, 1.5, n)
+    vitamin_d_level = rng.normal(25, 8, n)
+    sodium_intake_mg = rng.normal(3000, 500, n)
 
     # ----------------------------------------------------------
-    # 5. Assemble final dataset
+    # 5. Assemble final dataframe
     # ----------------------------------------------------------
     df = pd.DataFrame({
         "age": age,
@@ -253,6 +250,7 @@ def generate_clinical_risk(n=500, random_state=0):
     })
 
     return df
+
 
 
 
