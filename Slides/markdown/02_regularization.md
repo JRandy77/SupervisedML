@@ -51,7 +51,8 @@ Two main types:
 
 # Ridge Regression (L2)
 
-Ridge:
+Ridge: 
+ $$\|\mathbf{x}\|_2 = \sqrt{\sum_{i=1}^{n} x_i^2}$$
 
 - handles correlated predictors well.
 - spreads weight across related features.
@@ -65,6 +66,7 @@ Key question to explore:
 # Lasso Regression (L1)
 
 Lasso:
+ $$\|\mathbf{x}\|_1 = \sum_{i=1}^{n} |x_i|$$
 
 - performs **automatic feature selection**.
 - drives many coefficients exactly to **zero**.

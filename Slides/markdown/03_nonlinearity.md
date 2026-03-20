@@ -79,6 +79,18 @@ This is still simple, interpretable, fast.
 
 ---
 
+## For Further Learning
+
+**Sparses Identication of nonlinear dynamical systems:**
+- Discovered dynamics of fluid vortex shedding behind an obstacle
+- Input many nonlinear features to the model, used L1 to select the relevant features.
+- [https://arxiv.org/abs/1509.03580](https://arxiv.org/abs/1509.03580)
+
+**Spline Regression:**
+-- More flexible non-linear regression to fit complex curves
+
+---
+
 ## Workflow You’ll Use 
 
 1. Load the drug response dataset.

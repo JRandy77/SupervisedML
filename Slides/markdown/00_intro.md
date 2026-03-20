@@ -8,7 +8,7 @@ paginate: true
 
 ### QLS–MiCM Workshop
 
-**Instructor:** Jesse Islam
+**Instructor:** James Randolph
 **Section:** Introduction 
 
 ---
@@ -43,6 +43,13 @@ No modelling yet! Let's explore the data.
 ---
 
 ## What You Need to Know
+
+**Supervised learning :**
+- We have **features (X)** and a **target (y)**
+- Our goal: learn a function of X that predicts y. `f(X)=y`
+- Everything we do today follows this structure.
+
+---
 
 **Supervised learning :**
 - We have **features (X)** and a **target (y)**
@@ -87,6 +94,13 @@ You’ll repeat this in every later exercise to understand the data.
 
 ---
 
+## Note on Train-Test Split
+
+**Important Concept in Supervised Learning:**
+
+![Train-Test Split Schematic](../figures/00_train_test_split.png)
+
+---
 ## Your First Dataset
 
 Open the notebook:

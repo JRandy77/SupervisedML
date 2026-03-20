@@ -78,3 +78,10 @@ Ranking is based on:
 # Good Luck!
 ### May the best model win.
 
+---
+
+## Thank you for attending!
+
+**Please fill out the feedback form:**
+
+![qr code](../figures/06_feedback_qr.png)
