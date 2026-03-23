@@ -19,13 +19,13 @@ You don't have to install everything for today's workshop.
 
 | Notebook | Colab Link |
 |----------|------------|
-| 00 Intro | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QLS-MiCM/QLS-MiCM_Introduction_to_supervised_machine_learning/blob/main/Exercises/workbooks/00_intro_and_data_exploration.ipynb) |
-| 01 Regression | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QLS-MiCM/QLS-MiCM_Introduction_to_supervised_machine_learning/blob/main/Exercises/workbooks/01_linear_regression_medical.ipynb) |
-| 02 Regularization | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QLS-MiCM/QLS-MiCM_Introduction_to_supervised_machine_learning/blob/main/Exercises/workbooks/02_regularization_high_dim_medical.ipynb) |
-| 03 Nonlinearity| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QLS-MiCM/QLS-MiCM_Introduction_to_supervised_machine_learning/blob/main/Exercises/workbooks/03_feature_engineering_and_nonlinearity.ipynb) |
-| 04 MLP | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QLS-MiCM/QLS-MiCM_Introduction_to_supervised_machine_learning/blob/main/Exercises/workbooks/04_mlp_for_tabular_medical.ipynb) |
-| 05 Hyperparameters | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QLS-MiCM/QLS-MiCM_Introduction_to_supervised_machine_learning/blob/main/Exercises/workbooks/05_training_mechanics_and_eval.ipynb) |
-| 06 Hackathon | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QLS-MiCM/QLS-MiCM_Introduction_to_supervised_machine_learning/blob/main/Exercises/workbooks/06_hackathon_template.ipynb) |
+| 00 Intro | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QLS-MiCM/SupervisedML/blob/main/Exercises/workbooks/00_intro_and_data_exploration.ipynb) |
+| 01 Regression | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QLS-MiCM/SupervisedML/blob/main/Exercises/workbooks/01_linear_regression_medical.ipynb) |
+| 02 Regularization | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QLS-MiCM/SupervisedML/blob/main/Exercises/workbooks/02_regularization_high_dim_medical.ipynb) |
+| 03 Nonlinearity| [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QLS-MiCM/SupervisedML/blob/main/Exercises/workbooks/03_feature_engineering_and_nonlinearity.ipynb) |
+| 04 MLP | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QLS-MiCM/SupervisedML/blob/main/Exercises/workbooks/04_mlp_for_tabular_medical.ipynb) |
+| 05 Hyperparameters | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QLS-MiCM/SupervisedML/blob/main/Exercises/workbooks/05_training_mechanics_and_eval.ipynb) |
+| 06 Hackathon | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/QLS-MiCM/SupervisedML/blob/main/Exercises/workbooks/06_hackathon_template.ipynb) |
 
 ## Repository Structure
 ```
